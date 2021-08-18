@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     genColor: function () {
-      this.newColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+      this.newColor = `#${Math.floor(Math.random() * Math.pow(16, 6)).toString(16)}`;
     },
     isColorLight: function (color) {
       const hexadecimalValue = color.replace("#", "");
@@ -42,9 +42,13 @@ export default {
       const greenComponent = parseInt(hexadecimalValue.substr(2, 2), 16);
       const blueComponent = parseInt(hexadecimalValue.substr(4, 2), 16);
       const computedBrightness = (redComponent * 299 + greenComponent * 587 + blueComponent * 114) / 1000;
-      console.log(computedBrightness > 155 ? "Is bright" : "Is dark")
       return computedBrightness > 155;
     },
+  },
+  watch: {
+    newColor: function (col) {
+      this.$emit('update:gencolor', col);
+    }
   }
 }
 </script>

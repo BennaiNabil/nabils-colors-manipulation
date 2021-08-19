@@ -18,7 +18,7 @@
         <span class="font-weight-bold">below</span> to change its color!
       </v-card-subtitle>
       <v-card-subtitle>
-        <v-btn class="nab-colgen-button" @click="genColor()">Change color {{ newColor }}</v-btn>
+        <v-btn class="nab-colgen-button" @click="genColor()">Change color</v-btn>
       </v-card-subtitle>
     </v-card>
   </div>
@@ -34,7 +34,11 @@ export default {
   },
   methods: {
     genColor: function () {
-      this.newColor = `#${Math.floor(Math.random() * Math.pow(16, 6)).toString(16)}`;
+      let colTmp = `#${Math.floor(Math.random() * Math.pow(16, 6)).toString(16)}`.toUpperCase();
+      while (colTmp < 6) {
+        colTmp = `#${Math.floor(Math.random() * Math.pow(16, 6)).toString(16)}`.toUpperCase();
+      }
+      this.newColor = colTmp;
     },
     isColorLight: function (color) {
       const hexadecimalValue = color.replace("#", "");

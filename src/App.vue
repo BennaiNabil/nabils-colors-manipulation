@@ -9,7 +9,9 @@
           </div>
           <div class="col-8">
             <div class="row">
-              <div class="col-6">Des dingueries</div>
+              <div v-if="generatedColor" class="col-6">
+                <ColorDetails :color="generatedColor"></ColorDetails>
+              </div>
               <div class="col-6">Des nouvelles dingueries</div>
             </div>
           </div>
@@ -22,18 +24,18 @@
 
 import Navbar from "./components/Navbar";
 import ColorGenerator from "@/components/ColorGenerator";
+import ColorDetails from "@/components/ColorDetails";
 
 export default {
   name: 'App',
 
-  components: {ColorGenerator, Navbar},
+  components: {ColorDetails, ColorGenerator, Navbar},
 
   data: () => ({
     generatedColor: ''
   }),
   methods: {
     getGeneratedColor: function (val) {
-      console.log(val)
       this.generatedColor = val;
     }
   }

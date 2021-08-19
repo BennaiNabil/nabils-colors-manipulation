@@ -122,3 +122,14 @@ export const rgbToHSV = (r, g, b) => {
     return [h, s, v].map(Math.round);
 }
 
+export const prettifyRGB = (rgb) => {
+    return `${rgb.r}, ${rgb.g}, ${rgb.b}`;
+}
+
+export const prettifyCMYK = (cmyk)=>{
+    return cmyk[0] + '%, ' + cmyk[1] + '%, ' + cmyk[2] + '%, ' + cmyk[3] +'%'
+}
+
+export const prettifyHSL = (hsl) =>{
+    return hsl[0] + '°, ' + hsl[1] + '%, ' + hsl[2] + '%'
+}

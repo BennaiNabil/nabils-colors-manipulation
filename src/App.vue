@@ -7,6 +7,9 @@
         <ColorDetails :color="generatedColor" class="app-color-details"></ColorDetails>
         <ColorShades v-if="generatedColor" :initialColor="generatedColor" class="app-color-shades"></ColorShades>
       </div>
+      <div v-if="generatedColor" class="app-color-history">
+        <ColorsHistory :colorsHistory="colorsHistory"></ColorsHistory>
+      </div>
     </v-main>
   </v-app>
 </template>
@@ -16,11 +19,12 @@ import Navbar from "./components/Navbar";
 import ColorGenerator from "@/components/ColorGenerator";
 import ColorDetails from "@/components/ColorDetails";
 import ColorShades from "@/components/ColorShades";
+import ColorsHistory from "@/components/ColorsHistory";
 
 export default {
   name: 'App',
 
-  components: {ColorShades, ColorDetails, ColorGenerator, Navbar},
+  components: {ColorsHistory, ColorShades, ColorDetails, ColorGenerator, Navbar},
 
   data: () => ({
     generatedColor: '',
@@ -33,7 +37,7 @@ export default {
   },
   watch: {
     generatedColor: function () {
-      this.colorsHistory.unshift(this.generatedColor);
+      this.colorsHistory.unshift({color: this.generatedColor, hour: new Date()});
       console.log(this.colorsHistory)
     }
   }
@@ -51,6 +55,9 @@ export default {
   width: 100%;
 }
 
+.app-color-history {
+  margin: 3rem;
+}
 
 @media all and (max-width: 1200px) {
   .app-color-infos {

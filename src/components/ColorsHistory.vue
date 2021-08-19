@@ -18,8 +18,8 @@
           <td>{{ item.cmyk }}</td>
           <td>{{ item.hsl }}</td>
           <td>
-            <v-btn :style="{backgroundColor: item.hex, color: isColorLight(item.hex) ?  '#000' : '#fff' }" small>Copy
-              color
+            <v-btn :style="{backgroundColor: item.hex, color: isColorLight(item.hex) ?  '#000' : '#fff' }" small>
+              Copy color
             </v-btn>
           </td>
         </tr>
@@ -47,7 +47,6 @@ export default {
   data() {
     return {
       headers: [
-        {text: 'square', value: ''},
         {text: 'HOUR', value: 'hour'},
         {text: 'HEX', value: 'hex'},
         {text: 'RGB', value: 'rgb'},

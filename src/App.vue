@@ -4,7 +4,7 @@
     <v-main>
       <div class="app-color-infos">
         <ColorGenerator class="app-color-gen" @update:gencolor="getGeneratedColor"></ColorGenerator>
-        <ColorDetails :color="generatedColor" class="app-color-details"></ColorDetails>
+        <ColorDetails v-if="generatedColor" :color="generatedColor" class="app-color-details"></ColorDetails>
         <ColorShades v-if="generatedColor" :initialColor="generatedColor" class="app-color-shades"></ColorShades>
       </div>
       <div v-if="generatedColor" class="app-color-history">

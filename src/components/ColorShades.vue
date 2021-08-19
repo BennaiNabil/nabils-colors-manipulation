@@ -2,7 +2,7 @@
   <div class="nab-colshades-container">
     <hr :style="{color:initialColor}" class="nab-colshades-header-separator">
     <h3 :style="{color:initialColor}" class="nab-colshades-header">More about it</h3>
-    <v-list-item v-for="shade in getShades" :key="shade" class="nab-colshades-list-item">
+    <v-list-item v-for="(shade, index) in getShades" :key="index" class="nab-colshades-list-item">
       <span :style="{backgroundColor: shade}" class="nab-colshades-square"></span>
       <span>{{ shade.toUpperCase() }}</span>
       <span>{{ hexToRGB(shade).r }}, {{ hexToRGB(shade).g }}, {{ hexToRGB(shade).b }}</span>

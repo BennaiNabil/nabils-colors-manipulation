@@ -37,8 +37,8 @@ export default {
   methods: {
     genColor: function () {
       let colTmp = `#${Math.floor(Math.random() * Math.pow(16, 6)).toString(16)}`.toUpperCase();
-      while (colTmp < 6) {
-        colTmp = `#${Math.floor(Math.random() * Math.pow(16, 6)).toString(16)}`.toUpperCase();
+      if (colTmp.length < 7) {
+        colTmp += '0'.repeat(7 - colTmp.length)
       }
       this.newColor = colTmp;
     },

@@ -26,7 +26,7 @@ export default {
   text-decoration: inherit;
 }
 
-.v-app-bar-title__content{
+.v-app-bar-title__content {
   width: 200px !important;
 }
 </style>

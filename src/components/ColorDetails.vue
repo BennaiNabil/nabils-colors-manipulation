@@ -9,13 +9,11 @@
       </div>
       <div class="d-flex justify-space-between">
         <span>RGB</span>
-        <span>{{ hexToRGB(color).r }}, {{ hexToRGB(color).g }}, {{ hexToRGB(color).b }}</span>
+        <span>{{ prettifyRGB(hexToRGB(color)) }}</span>
       </div>
       <div class="d-flex justify-space-between">
         <span>CMYK</span>
-        <span>{{ hexToCMYK(color)[0] }}%, {{ hexToCMYK(color)[1] }}%, {{ hexToCMYK(color)[2] }}%, {{
-            hexToCMYK(color)[3]
-          }}%</span>
+        <span>{{ prettifyCMYK(hexToCMYK(color)) }}</span>
       </div>
       <div class="d-flex justify-space-between">
         <span>HSV</span>
@@ -27,7 +25,7 @@
       </div>
       <div class="d-flex justify-space-between">
         <span>HSL</span>
-        <span>{{ hexToHSL(color)[0] }}°, {{ hexToHSL(color)[1] }}%, {{ hexToHSL(color)[2] }}%</span>
+        <span>{{ prettifyHSL(hexToHSL(color)) }}</span>
       </div>
     </div>
     <hr :style="{color: color}">
@@ -37,7 +35,15 @@
 </template>
 
 <script>
-import {hexToCMYK, hexToHSL, hexToRGB, rgbToHSV} from "@/plugins/colorsManipulation";
+import {
+  hexToCMYK,
+  hexToHSL,
+  hexToRGB,
+  prettifyCMYK,
+  prettifyHSL,
+  prettifyRGB,
+  rgbToHSV
+} from "@/plugins/colorsManipulation";
 
 export default {
   name: "ColorDetails",
@@ -48,6 +54,9 @@ export default {
     hexToCMYK,
     hexToHSL,
     rgbToHSV,
+    prettifyRGB,
+    prettifyCMYK,
+    prettifyHSL,
     objToArr: (obj) => {
       return Object.values(obj);
     },

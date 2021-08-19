@@ -122,14 +122,24 @@ export const rgbToHSV = (r, g, b) => {
     return [h, s, v].map(Math.round);
 }
 
+export const isColorLight = (color) => {
+    const hexadecimalValue = color.replace("#", "");
+    const redComponent = parseInt(hexadecimalValue.substr(0, 2), 16);
+    const greenComponent = parseInt(hexadecimalValue.substr(2, 2), 16);
+    const blueComponent = parseInt(hexadecimalValue.substr(4, 2), 16);
+    const computedBrightness = (redComponent * 299 + greenComponent * 587 + blueComponent * 114) / 1000;
+    return computedBrightness > 155;
+}
+
 export const prettifyRGB = (rgb) => {
     return `${rgb.r}, ${rgb.g}, ${rgb.b}`;
 }
 
-export const prettifyCMYK = (cmyk)=>{
-    return cmyk[0] + '%, ' + cmyk[1] + '%, ' + cmyk[2] + '%, ' + cmyk[3] +'%'
+export const prettifyCMYK = (cmyk) => {
+    return cmyk[0] + '%, ' + cmyk[1] + '%, ' + cmyk[2] + '%, ' + cmyk[3] + '%'
 }
 
-export const prettifyHSL = (hsl) =>{
+export const prettifyHSL = (hsl) => {
     return hsl[0] + '°, ' + hsl[1] + '%, ' + hsl[2] + '%'
 }
+

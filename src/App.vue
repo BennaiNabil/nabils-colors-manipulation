@@ -37,8 +37,10 @@ export default {
   },
   watch: {
     generatedColor: function () {
+      if (this.colorsHistory.length >= 5) {
+        this.colorsHistory.pop();
+      }
       this.colorsHistory.unshift({color: this.generatedColor, hour: new Date()});
-      console.log(this.colorsHistory)
     }
   }
 };

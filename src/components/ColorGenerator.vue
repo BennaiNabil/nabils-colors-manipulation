@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import {isColorLight} from "@/plugins/colorsManipulation";
+
 export default {
   name: "ColorGenerator",
   data: function () {
@@ -40,14 +42,7 @@ export default {
       }
       this.newColor = colTmp;
     },
-    isColorLight: function (color) {
-      const hexadecimalValue = color.replace("#", "");
-      const redComponent = parseInt(hexadecimalValue.substr(0, 2), 16);
-      const greenComponent = parseInt(hexadecimalValue.substr(2, 2), 16);
-      const blueComponent = parseInt(hexadecimalValue.substr(4, 2), 16);
-      const computedBrightness = (redComponent * 299 + greenComponent * 587 + blueComponent * 114) / 1000;
-      return computedBrightness > 155;
-    },
+    isColorLight
   },
   watch: {
     newColor: function (col) {

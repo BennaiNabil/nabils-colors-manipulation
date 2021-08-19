@@ -18,7 +18,9 @@
           <td>{{ item.cmyk }}</td>
           <td>{{ item.hsl }}</td>
           <td>
-            <v-btn :style="{backgroundColor: item.hex, color: isColorLight(item.hex) ?  '#000' : '#fff' }" small>
+            <v-btn v-clipboard:copy="item.hex"
+                   :style="{backgroundColor: item.hex, color: isColorLight(item.hex) ?  '#000' : '#fff' }"
+                   small @click="snackbar = true">
               Copy color
             </v-btn>
           </td>
@@ -26,6 +28,14 @@
         </tbody>
       </template>
     </v-simple-table>
+    <v-snackbar v-model="snackbar">
+      Copied to clipboard
+      <template v-slot:action="{ attrs }">
+        <v-btn v-bind="attrs" color="pink" text @click="snackbar = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
@@ -46,6 +56,7 @@ export default {
   props: ['colorsHistory'],
   data() {
     return {
+      snackbar: false,
       headers: [
         {text: 'HOUR', value: 'hour'},
         {text: 'HEX', value: 'hex'},
@@ -57,18 +68,18 @@ export default {
     }
   },
   methods: {
-    isColorLight
+    isColorLight,
   },
   computed: {
     colors: function () {
       let tmpData = [];
-      for (const obj of this.colorsHistory) {
+      for (const {color, hour} of this.colorsHistory) {
         tmpData.push({
-          "hour": `${obj.hour.getHours()}:${obj.hour.getMinutes()}`,
-          "hex": obj.color.toUpperCase(),
-          "rgb": prettifyRGB(hexToRGB(obj.color)),
-          "cmyk": prettifyCMYK(hexToCMYK(obj.color)),
-          "hsl": prettifyHSL(hexToHSL(obj.color))
+          "hour": `${hour.getHours()}:${hour.getMinutes()}`,
+          "hex": color.toUpperCase(),
+          "rgb": prettifyRGB(hexToRGB(color)),
+          "cmyk": prettifyCMYK(hexToCMYK(color)),
+          "hsl": prettifyHSL(hexToHSL(color))
         });
       }
       return tmpData;
